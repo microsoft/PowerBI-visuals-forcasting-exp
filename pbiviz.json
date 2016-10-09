@@ -1,0 +1,24 @@
+{
+  "visual": {
+    "name": "lineforecast",
+    "displayName": "ETS Forecasting",
+    "guid": "PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F",
+    "visualClassName": "Visual",
+    "version": "1.0.0",
+    "description": "",
+    "supportUrl": "",
+    "gitHubUrl": ""
+  },
+  "apiVersion": "1.2.0",
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "assets": {
+    "icon": "assets/icon.png"
+  },
+  "externalJS": [],
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": "dependencies.json"
+}

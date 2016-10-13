@@ -25,12 +25,7 @@
  */
 module powerbi.extensibility.visual {
 
-    export interface ScriptResult {
-        source: string;
-        provider: string;
-    }
-
-    interface VisualSettings1 {
+    interface VisualSettingsForecastPlotParams {
         show: boolean;
         forecastLength: number;
         seasonType: string;
@@ -39,19 +34,19 @@ module powerbi.extensibility.visual {
         dampingType: string;
     }
 
-    interface VisualSettings2 {
+    interface VisualSettingsConfParams {
         show: boolean;
         percentile: number;
         upperConfIntervalFactor: string;
     }
-    interface VisualSettings3 {
+    interface VisualGraphParams {
         show: boolean;
         dataCol: string;
         forecastCol: string;
         percentile: number;
         weight: number;
     }
-    interface VisualSettings4 {
+    interface VisualAdditionalParams {
         show: boolean;
         showWarnings: boolean;
         showInfo: boolean;
@@ -63,10 +58,10 @@ module powerbi.extensibility.visual {
         private imageDiv: HTMLDivElement;
         private imageElement: HTMLImageElement;
 
-        private settings1: VisualSettings1;
-        private settings2: VisualSettings2;
-        private settings3: VisualSettings3;
-        private settings4: VisualSettings4;
+        private settings_forecastPlot_params: VisualSettingsForecastPlotParams;
+        private settings_conf_params: VisualSettingsConfParams;
+        private settings_graph_params: VisualGraphParams;
+        private settings_additional_params: VisualAdditionalParams;
 
         public constructor(options: VisualConstructorOptions) {
             this.imageDiv = document.createElement('div');
@@ -78,7 +73,7 @@ module powerbi.extensibility.visual {
 
             this.imageDiv.appendChild(this.imageElement);
 
-            this.settings1 = <VisualSettings1>{
+            this.settings_forecastPlot_params = <VisualSettingsForecastPlotParams>{
                 show: false,
                 forecastLength: 10,
                 seasonType: "Automatic",
@@ -87,13 +82,13 @@ module powerbi.extensibility.visual {
                 dampingType: "Automatic"
             };
 
-            this.settings2 = <VisualSettings2>{
+            this.settings_conf_params = <VisualSettingsConfParams>{
                 show: true,
                 percentile: 80,
                 upperConfIntervalFactor: "0.5",
             };
 
-            this.settings3 = <VisualSettings3>{
+            this.settings_graph_params = <VisualGraphParams>{
                 show: false,
                 dataCol: "orange",
                 forecastCol: "red",
@@ -102,7 +97,7 @@ module powerbi.extensibility.visual {
 
             };
 
-            this.settings4 = <VisualSettings4>{
+            this.settings_additional_params = <VisualAdditionalParams>{
                 show: false,
                 showWarnings: false,
                 showInfo: true,
@@ -119,36 +114,36 @@ module powerbi.extensibility.visual {
             if (!dataView || !dataView.metadata)
                 return;
 
-            this.settings1 = <VisualSettings1>{
-                show: getValue<boolean>(dataView.metadata.objects, 'settings1', 'show', false),
-                forecastLength: getValue<number>(dataView.metadata.objects, 'settings1', 'forecastLength', 10),
+            this.settings_forecastPlot_params = <VisualSettingsForecastPlotParams>{
+                show: getValue<boolean>(dataView.metadata.objects, 'settings_forecastPlot_params', 'show', false),
+                forecastLength: getValue<number>(dataView.metadata.objects, 'settings_forecastPlot_params', 'forecastLength', 10),
 
-                seasonType: getValue<string>(dataView.metadata.objects, 'settings1', 'seasonType', "Automatic"),
-                errorType: getValue<string>(dataView.metadata.objects, 'settings1', 'errorType', "Automatic"),
-                trendType: getValue<string>(dataView.metadata.objects, 'settings1', 'trendType', "Automatic"),
-                dampingType: getValue<string>(dataView.metadata.objects, 'settings1', 'dampingType', "Automatic")
+                seasonType: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'seasonType', "Automatic"),
+                errorType: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'errorType', "Automatic"),
+                trendType: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'trendType', "Automatic"),
+                dampingType: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'dampingType', "Automatic")
             };
 
 
-            this.settings2 = <VisualSettings2>{
-                show: getValue<boolean>(dataView.metadata.objects, 'settings2', 'show', true),
-                percentile: getValue<number>(dataView.metadata.objects, 'settings2', 'percentile', 80),
-                upperConfIntervalFactor: getValue<string>(dataView.metadata.objects, 'settings2', 'upperConfIntervalFactor', "0.5"),
+            this.settings_conf_params = <VisualSettingsConfParams>{
+                show: getValue<boolean>(dataView.metadata.objects, 'settings_conf_params', 'show', true),
+                percentile: getValue<number>(dataView.metadata.objects, 'settings_conf_params', 'percentile', 80),
+                upperConfIntervalFactor: getValue<string>(dataView.metadata.objects, 'settings_conf_params', 'upperConfIntervalFactor', "0.5"),
 
             }
-            this.settings3 = <VisualSettings3>{
-                show: getValue<boolean>(dataView.metadata.objects, 'settings3', 'show', false),
-                dataCol: getValue<string>(dataView.metadata.objects, 'settings3', 'dataCol', "orange"),
-                forecastCol: getValue<string>(dataView.metadata.objects, 'settings3', 'forecastCol', "red"),
-                percentile: getValue<number>(dataView.metadata.objects, 'settings3', 'percentile', 40),
-                weight: getValue<number>(dataView.metadata.objects, 'settings3', 'weight', 10),
+            this.settings_graph_params = <VisualGraphParams>{
+                show: getValue<boolean>(dataView.metadata.objects, 'settings_graph_params', 'show', false),
+                dataCol: getValue<string>(dataView.metadata.objects, 'settings_graph_params', 'dataCol', "orange"),
+                forecastCol: getValue<string>(dataView.metadata.objects, 'settings_graph_params', 'forecastCol', "red"),
+                percentile: getValue<number>(dataView.metadata.objects, 'settings_graph_params', 'percentile', 40),
+                weight: getValue<number>(dataView.metadata.objects, 'settings_graph_params', 'weight', 10),
 
             }
-            this.settings4 = <VisualSettings4>{
-                show: getValue<boolean>(dataView.metadata.objects, 'settings4', 'show', false),
-                showWarnings: getValue<boolean>(dataView.metadata.objects, 'settings4', 'showWarnings', false),
-                showInfo: getValue<boolean>(dataView.metadata.objects, 'settings4', 'showInfo', true),
-                textSize: getValue<number>(dataView.metadata.objects, 'settings4', 'textSize', 10)
+            this.settings_additional_params = <VisualAdditionalParams>{
+                show: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'show', false),
+                showWarnings: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'showWarnings', false),
+                showInfo: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'showInfo', true),
+                textSize: getValue<number>(dataView.metadata.objects, 'settings_additional_params', 'textSize', 10)
             }
 
             let imageUrl: string = null;
@@ -175,18 +170,18 @@ module powerbi.extensibility.visual {
             let objectEnumeration = [];
 
             switch (objectName) {
-                case 'settings1':
-                    if(this.settings1.trendType!="None")
+                case 'settings_forecastPlot_params':
+                    if(this.settings_forecastPlot_params.trendType!="None")
                     {
                     objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                            show: this.settings1.show,
-                            forecastLength: Math.round(inMinMax(this.settings1.forecastLength,1,1000000)),
-                            trendType: this.settings1.trendType,
-                            dampingType: this.settings1.dampingType,
-                            errorType: this.settings1.errorType,
-                            seasonType: this.settings1.seasonType,
+                            show: this.settings_forecastPlot_params.show,
+                            forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,1000000)),
+                            trendType: this.settings_forecastPlot_params.trendType,
+                            dampingType: this.settings_forecastPlot_params.dampingType,
+                            errorType: this.settings_forecastPlot_params.errorType,
+                            seasonType: this.settings_forecastPlot_params.seasonType,
                             
                         },
                         selector: null
@@ -197,54 +192,54 @@ module powerbi.extensibility.visual {
                         objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                            show: this.settings1.show,
-                            forecastLength: Math.round(inMinMax(this.settings1.forecastLength,1,1000000)),
-                            trendType: this.settings1.trendType,
-                            errorType: this.settings1.errorType,
-                            seasonType: this.settings1.seasonType,                
+                            show: this.settings_forecastPlot_params.show,
+                            forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,1000000)),
+                            trendType: this.settings_forecastPlot_params.trendType,
+                            errorType: this.settings_forecastPlot_params.errorType,
+                            seasonType: this.settings_forecastPlot_params.seasonType,                
                         },
                         selector: null
                     }); 
                     }
                     break;
 
-                case 'settings2':
+                case 'settings_conf_params':
                     objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                            show: this.settings2.show,
-                            percentile: inMinMax(this.settings2.percentile,0,99),
-                            upperConfIntervalFactor: this.settings2.upperConfIntervalFactor
+                            show: this.settings_conf_params.show,
+                            percentile: inMinMax(this.settings_conf_params.percentile,0,99),
+                            upperConfIntervalFactor: this.settings_conf_params.upperConfIntervalFactor
                         },
                         selector: null
                     });
                     break;
 
-                case 'settings3':
+                case 'settings_graph_params':
                     objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                            show: this.settings3.show,
-                            dataCol: this.settings3.dataCol,
-                            forecastCol: this.settings3.forecastCol,
-                            percentile: this.settings3.percentile,
-                            weight: this.settings3.weight
+                            show: this.settings_graph_params.show,
+                            dataCol: this.settings_graph_params.dataCol,
+                            forecastCol: this.settings_graph_params.forecastCol,
+                            percentile: this.settings_graph_params.percentile,
+                            weight: this.settings_graph_params.weight
 
                         },
                         selector: null
                     });
                     break;
 
-                case 'settings4':
-                    if (this.settings4.showInfo == true) {
+                case 'settings_additional_params':
+                    if (this.settings_additional_params.showInfo == true) {
                         objectEnumeration.push({
 
                             objectName: objectName,
                             properties: {
-                                show: this.settings4.show,
-                                showWarnings: this.settings4.showWarnings,
-                                showInfo: this.settings4.showInfo,
-                                textSize: this.settings4.textSize
+                                show: this.settings_additional_params.show,
+                                showWarnings: this.settings_additional_params.showWarnings,
+                                showInfo: this.settings_additional_params.showInfo,
+                                textSize: this.settings_additional_params.textSize
                             },
                             selector: null
                         });
@@ -254,9 +249,9 @@ module powerbi.extensibility.visual {
 
                             objectName: objectName,
                             properties: {
-                                show: this.settings4.show,
-                                showWarnings: this.settings4.showWarnings,
-                                showInfo: this.settings4.showInfo,
+                                show: this.settings_additional_params.show,
+                                showWarnings: this.settings_additional_params.showWarnings,
+                                showInfo: this.settings_additional_params.showInfo,
 
                             },
                             selector: null

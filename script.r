@@ -58,34 +58,34 @@ if(exists("Date") && exists("Value"))
 
 ############ User Parameters #########
 
-if(exists("settings1_show") && settings1_show == FALSE)
-  rm(list= ls(pattern = "settings1_"))
-# if(exists("settings2_show") && settings2_show == FALSE)
-#   rm(list= ls(pattern = "settings2_"))
-if(exists("settings3_show") && settings3_show == FALSE)
-  rm(list= ls(pattern = "settings3_"))
-if(exists("settings4_show") && settings4_show == FALSE)
-  rm(list= ls(pattern = "settings4_"))
+if(exists("settings_forecastPlot_params_show") && settings_forecastPlot_params_show == FALSE)
+  rm(list= ls(pattern = "settings_forecastPlot_params_"))
+# if(exists("settings_conf_params_show") && settings_conf_params_show == FALSE)
+#   rm(list= ls(pattern = "settings_conf_params_"))
+if(exists("settings_graph_params_show") && settings_graph_params_show == FALSE)
+  rm(list= ls(pattern = "settings_graph_params_"))
+if(exists("settings_additional_params_show") && settings_additional_params_show == FALSE)
+  rm(list= ls(pattern = "settings_additional_params_"))
 
 
 ##PBI_PARAM: Should warnings text be displayed?
 #Type:logical, Default:TRUE, Range:NA, PossibleValues:NA, Remarks: NA
 showWarnings=FALSE
-if(exists("settings4_showWarnings"))
-  showWarnings = settings4_showWarnings
+if(exists("settings_additional_params_showWarnings"))
+  showWarnings = settings_additional_params_showWarnings
 
 ##PBI_PARAM: Should additional info about the forcasting method be displayed?
 #Type:logical, Default:TRUE, Range:NA, PossibleValues:NA, Remarks: NA
 showInfo=TRUE
-if(exists("settings4_showInfo"))
-  showInfo = settings4_showInfo
+if(exists("settings_additional_params_showInfo"))
+  showInfo = settings_additional_params_showInfo
 
 ##PBI_PARAM: Forecast length
 #Type:integer, Default:NULL, Range:NA, PossibleValues:NA, Remarks: NULL means choose forecast length automatically
 forecastLength=10
-if(exists("settings1_forecastLength"))
+if(exists("settings_forecastPlot_params_forecastLength"))
 {
-  forecastLength = as.numeric(settings1_forecastLength)
+  forecastLength = as.numeric(settings_forecastPlot_params_forecastLength)
   if(is.na(forecastLength))
     forecastLength = 10
   forecastLength = round(max(min(forecastLength,1e+6),1))
@@ -94,40 +94,40 @@ if(exists("settings1_forecastLength"))
 ##PBI_PARAM Error type
 #Type: string, Default:"Automatic", Range:NA, PossibleValues:"Automatic","Multiplicative","Additive"
 errorType = "Automatic"
-if(exists("settings1_errorType"))
-  errorType = settings1_errorType
+if(exists("settings_forecastPlot_params_errorType"))
+  errorType = settings_forecastPlot_params_errorType
 
 ##PBI_PARAM Trend type
 #Type: string, Default:"Automatic", Range:NA, PossibleValues:"Automatic","Multiplicative","Additive","None"
 trendType = "Automatic"
-if(exists("settings1_trendType"))
-  trendType = settings1_trendType
+if(exists("settings_forecastPlot_params_trendType"))
+  trendType = settings_forecastPlot_params_trendType
 
 ##PBI_PARAM Season type
 #Type: string, Default:"Automatic", Range:NA, PossibleValues:"Automatic","Multiplicative","Additive","None"
 seasonType = "Automatic"
-if(exists("settings1_seasonType"))
-  seasonType = settings1_seasonType
+if(exists("settings_forecastPlot_params_seasonType"))
+  seasonType = settings_forecastPlot_params_seasonType
 
 ##PBI_PARAM Confidence level band display
 #Type:logical, Default:TRUE, Range:NA, PossibleValues:NA, Remarks: NA
 drawConfidenceLevels = TRUE
-if(exists("settings2_show"))
-  drawConfidenceLevels = settings2_show
+if(exists("settings_conf_params_show"))
+  drawConfidenceLevels = settings_conf_params_show
 
 
 lowerConfInterval = 0.8
-if (exists("settings2_percentile")) 
+if (exists("settings_conf_params_percentile")) 
 { 
-  lowerConfInterval = as.numeric(settings2_percentile)/100
+  lowerConfInterval = as.numeric(settings_conf_params_percentile)/100
   if(is.na(lowerConfInterval))
     lowerConfInterval = 0.8
   
   lowerConfInterval = max(min(lowerConfInterval,0.99),0)
 }
 upperConfInterval = 0.98
-if (exists("settings2_upperConfIntervalFactor")) 
-{ upperConfInterval = lowerConfInterval+(1-lowerConfInterval)*as.numeric(settings2_upperConfIntervalFactor)}
+if (exists("settings_conf_params_upperConfIntervalFactor")) 
+{ upperConfInterval = lowerConfInterval+(1-lowerConfInterval)*as.numeric(settings_conf_params_upperConfIntervalFactor)}
 
 if(drawConfidenceLevels==FALSE)
   lowerConfInterval=upperConfInterval=0
@@ -169,20 +169,20 @@ minPoints = 5
 ##PBI_PARAM Color of time series line
 #Type:string, Default:"orange", Range:NA, PossibleValues:"orange","blue","green","black"
 pointsCol = "orange"
-if(exists("settings3_dataCol"))
-  pointsCol = settings3_dataCol
+if(exists("settings_graph_params_dataCol"))
+  pointsCol = settings_graph_params_dataCol
 
 ##PBI_PARAM Color of forecast line
 #Type:string, Default:"red", Range:NA, PossibleValues:"red","blue","green","black"
 forecastCol = "red"
-if(exists("settings3_forecastCol"))
-  forecastCol = settings3_forecastCol
+if(exists("settings_graph_params_forecastCol"))
+  forecastCol = settings_graph_params_forecastCol
 
 #PBI_PARAM Transparency of scatterplot points
 #Type:numeric, Default:0.4, Range:[0,1], PossibleValues:NA, Remarks: NA
 transparency = 1
-if(exists("settings3_percentile"))
-  transparency = as.numeric(settings3_percentile)/100
+if(exists("settings_graph_params_percentile"))
+  transparency = as.numeric(settings_graph_params_percentile)/100
 
 #PBI_PARAM Shaded band for confidence interval
 #Type:logical, Default:TRUE, Range:NA, PossibleValues:NA, Remarks: NA
@@ -191,9 +191,9 @@ fillConfidenceLevels=TRUE
 #PBI_PARAM damping
 #Type:logical, Default: NULL, Remarks: NULL selects damped or undamped trend depending on which fits better
 damped = NULL
-if(exists("settings1_dampingType"))
+if(exists("settings_forecastPlot_params_dampingType"))
 {
-  damped = as.logical(settings1_dampingType)
+  damped = as.logical(settings_forecastPlot_params_dampingType)
   if(is.na(damped))
     damped=NULL
 }
@@ -201,14 +201,14 @@ if(exists("settings1_dampingType"))
 #PBI_PARAM Size of points on the plot
 #Type:numeric, Default: 1 , Range:[0.1,5], PossibleValues:NA, Remarks: NA
 pointCex = 1
-if(exists("settings3_weight"))
-  pointCex = as.numeric(settings3_weight)/10
+if(exists("settings_graph_params_weight"))
+  pointCex = as.numeric(settings_graph_params_weight)/10
 
 #PBI_PARAM Size of subtitle on the plot
 #Type:numeric, Default: 0.5 , Range:[0.1,5], PossibleValues:NA, Remarks: NA
 cexSub = 0.75
-if(exists("settings4_textSize"))
-  cexSub = as.numeric(settings4_textSize)/12
+if(exists("settings_additional_params_textSize"))
+  cexSub = as.numeric(settings_additional_params_textSize)/12
 
 ###############Internal functions definitions#################
 

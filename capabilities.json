@@ -60,7 +60,7 @@
         }
       }
     },
-    "settings1": {
+    "settings_forecastPlot_params": {
       "displayName": "Forecasting Plot Settings",
       "description": "Basic decomposition models are:  1. Additive: x[t] = Trend + Seasonal + Random, 2. Multiplicative:  x[t] = Trend * Seasonal * Random. Several hybrid models are allowed. Any forbiden model combination will be replaced by `Automatic`",
       "properties": {
@@ -160,7 +160,7 @@
             }
       }
     }, 
-     "settings2":{
+     "settings_conf_params":{
         "displayName": "Confidence intervals",
         "properties": {
           "show": {
@@ -197,7 +197,7 @@
           }
         }
     },
-     "settings3":{
+     "settings_graph_params":{
         "displayName": "Graphical parameters",
         "properties": {
           "show": {
@@ -225,7 +225,7 @@
             }
         }
     },
-     "settings4":{
+     "settings_additional_params":{
         "displayName": "Additional parameters",
         "properties": {
           "show": {

@@ -1,0 +1,260 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "Date",
+      "description": "Equally spaced date values",
+      "kind": "Grouping",
+      "name": "Date"
+    },
+    {
+      "displayName": "Value",
+      "description": "Numeric variable",
+      "kind": "Measure",
+      "name": "Value"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "conditions": [
+          { "Date": { "max": 1 }, "Value": { "max": 1 } }
+      ],
+      "scriptResult": {
+        "dataInput": {
+          "table": {
+            "rows": {
+              "select": [
+                { "for": { "in": "Date" } },
+                { "for": { "in": "Value" } }
+              ],
+              "dataReductionAlgorithm": {
+                "top": { }
+              }
+            }
+          }
+        },
+        "script": {
+          "scriptProviderDefault": "R",
+          "scriptOutputType": "png",
+          "source": {
+            "objectName": "rcv_script",
+            "propertyName": "source"
+          },
+          "provider": {
+            "objectName": "rcv_script",
+            "propertyName": "provider"
+          }
+        }
+      }
+    }
+  ],
+  "objects": {
+    "rcv_script": {
+      "properties": {
+        "provider": {
+          "type": { "text": true }
+        },
+        "source": {
+          "type": {
+            "scripting": { "source": true }
+          }
+        }
+      }
+    },
+    "settings_forecastPlot_params": {
+      "displayName": "Forecasting Plot Settings",
+      "description": "Basic decomposition models are:  1. Additive: x[t] = Trend + Seasonal + Random, 2. Multiplicative:  x[t] = Trend * Seasonal * Random. Several hybrid models are allowed. Any forbiden model combination will be replaced by `Automatic`",
+      "properties": {
+         "show": {
+                "type": {"bool": true}
+            },
+        "forecastLength": { 
+          "displayName": "Forecast length",
+          "description": "Number of data points to predict", 
+          "type": { "numeric": true } 
+          },
+        
+        "errorType": {
+              "displayName": "Error component",
+              "type": {
+                "enumeration": [
+                  {
+                    "displayName": "Automatic",
+                    "value": "Automatic"
+                  },
+                  {
+                    "displayName": "Multiplicative",
+                    "value": "Multiplicative"
+                  },
+                  {
+                    "displayName": "Additive",
+                    "value": "Additive"
+                  }
+                ]
+              }
+            },
+            "trendType": {
+              "displayName": "Trend component",
+              "type": {
+                "enumeration": [
+                  {
+                    "displayName": "Automatic",
+                    "value": "Automatic"
+                  },
+                  {
+                    "displayName": "Multiplicative",
+                    "value": "Multiplicative"
+                  },
+                  {
+                    "displayName": "Additive",
+                    "value": "Additive"
+                  },
+                  {
+                    "displayName": "None",
+                    "value": "None"
+                  }
+                ]
+              }
+            },
+            "seasonType": {
+              "displayName": "Seasonal component",
+              "type": {
+                "enumeration": [
+                  {
+                    "displayName": "Automatic",
+                    "value": "Automatic"
+                  },
+                  {
+                    "displayName": "Multiplicative",
+                    "value": "Multiplicative"
+                  },
+                  {
+                    "displayName": "Additive",
+                    "value": "Additive"
+                  },
+                  {
+                    "displayName": "None",
+                    "value": "None"
+                  }
+                ]
+              }
+            },
+             "dampingType": {
+              "displayName": "Trend with damping",
+              "description": "Add a parameter that `dampens` the trend to a flat line some time in the future",
+              "type": {
+                "enumeration": [
+                  {
+                    "displayName": "Automatic",
+                    "value": "Automatic"
+                  },
+                  {
+                    "displayName": "TRUE",
+                    "value": "TRUE"
+                  },
+                  {
+                    "displayName": "FALSE",
+                    "value": "FALSE"
+                  }
+                ]
+              }
+            }
+      }
+    }, 
+     "settings_conf_params":{
+        "displayName": "Confidence intervals",
+        "properties": {
+          "show": {
+                "type": {"bool": true}
+            }, 
+        "percentile": { "displayName": "Confidence", "type": { "numeric": true } },
+        "upperConfIntervalFactor": { 
+          "displayName": "Upper interval factor",
+          "description": "Upper Confidence =  Confidence + (100 - Confidence)*UpperIntervalFactor ", 
+        "type": {
+                "enumeration": [
+                  {
+                    "displayName": "0",
+                    "value": "0"
+                  },
+                  {
+                    "displayName": "0.5",
+                    "value": "0.5"
+                  },
+                  {
+                    "displayName": "0.75",
+                    "value": "0.75"
+                  },
+                  {
+                    "displayName": "0.9",
+                    "value": "0.9"
+                  },
+                  {
+                    "displayName": "0.95",
+                    "value": "0.95"
+                  }
+                ]
+              }
+          }
+        }
+    },
+     "settings_graph_params":{
+        "displayName": "Graphical parameters",
+        "properties": {
+          "show": {
+                "type": {"bool": true}
+            }, 
+            "dataCol": {
+              "displayName": "History data color",
+              "type": { "fill": { "solid": { "color": true }}}
+            }, 
+              "forecastCol": {
+              "displayName": "Forecast data color",
+              "type": { "fill": { "solid": { "color": true }}}
+            },
+            "percentile":{
+            "displayName": "Opacity",
+            "type": {
+              "numeric": true
+            }
+            },
+            "weight":{
+            "displayName": "Line width",
+            "type": {
+              "numeric": true
+            }
+            }
+        }
+    },
+     "settings_additional_params":{
+        "displayName": "Additional parameters",
+        "properties": {
+          "show": {
+                "type": {"bool": true}
+            }, 
+            "showWarnings":{
+            "displayName": "Show warnings",
+            "type": {
+              "bool": true
+            }
+          },
+            "showInfo":{
+            "displayName": "Show info",
+            "description": "Info contains the selected model: `Additive`(A), `Multiplicative`(M) or `None`(N) per component. Especially informative for `Automatic` mode ",
+            "type": {
+              "bool": true
+            }
+          },
+           "textSize":{
+            "displayName": "Info font size",
+            "type": {
+              "numeric": true
+              }
+            }            
+        }
+    }
+
+
+
+  },
+  "suppressDefaultTitle": true
+}

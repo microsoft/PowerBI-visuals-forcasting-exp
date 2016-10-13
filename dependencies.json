@@ -1,0 +1,24 @@
+{
+  "cranPackages": [
+    {
+      "name": "graphics",
+      "displayName": "The R Graphics Package",
+      "url": "stat.ethz.ch/R-manual/R-patched/library/graphics/html/00Index.html"
+    },
+    {
+      "name": "scales",
+      "displayName": "scales: Scale Functions for Visualization",
+      "url": "https://cran.r-project.org/web/packages/scales/index.html"
+    },
+    {
+      "name": "forecast",
+      "displayName": "forecast: Forecasting Functions for Time Series and Linear Models",
+      "url": "https://cran.r-project.org/web/packages/forecast/index.html"
+    },
+    {
+      "name": "zoo",
+      "displayName": "zoo: S3 Infrastructure for Regular and Irregular Time Series",
+      "url": "https://cran.r-project.org/web/packages/zoo/index.html"
+    }
+  ]
+}

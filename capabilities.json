@@ -61,18 +61,16 @@
       }
     },
     "settings_forecastPlot_params": {
-      "displayName": "Forecasting Plot Settings",
-      "description": "Basic decomposition models are:  1. Additive: x[t] = Trend + Seasonal + Random, 2. Multiplicative:  x[t] = Trend * Seasonal * Random. Several hybrid models are allowed. Any forbiden model combination will be replaced by `Automatic`",
+      "displayName": "Forecasting settings",
+      "description": "Basic decomposition models are:  1. Additive: x[t] = Trend + Seasonal + Random, 2. Multiplicative:  x[t] = Trend * Seasonal * Random. Hybrid models are allowed. Any forbiden model combination will be replaced by `Automatic`",
       "properties": {
-         "show": {
-                "type": {"bool": true}
-            },
+      
         "forecastLength": { 
           "displayName": "Forecast length",
           "description": "Number of data points to predict", 
           "type": { "numeric": true } 
           },
-        
+      
         "errorType": {
               "displayName": "Error component",
               "type": {
@@ -140,7 +138,7 @@
             },
              "dampingType": {
               "displayName": "Trend with damping",
-              "description": "Add a parameter that `dampens` the trend to a flat line some time in the future",
+              "description": "Add a parameter that dampens the trend to a flat line at some point in the future",
               "type": {
                 "enumeration": [
                   {
@@ -157,7 +155,44 @@
                   }
                 ]
               }
-            }
+            },
+            "targetSeason": {
+              "displayName": "Target seasonal factor",
+              "description": "Specify, if time series is influenced by known seasonal factors. The the number of observations per season is limited by 24. Non compatible seasonality will be ignored",
+              "type": {
+                "enumeration": [
+                  {
+                    "displayName": "Automatic",
+                    "value": "Automatic"
+                  },
+                  {
+                    "displayName": "Hour",
+                    "value": "Hour"
+                  },
+                  {
+                    "displayName": "Day",
+                    "value": "Day"
+                  },
+                  {
+                    "displayName": "Week",
+                    "value": "Week"
+                  },
+                  {
+                    "displayName": "Month",
+                    "value": "Month"
+                  },
+                  {
+                    "displayName": "Quater",
+                    "value": "Quater"
+                  }, 
+                  {
+                    "displayName": "Year",
+                    "value": "Year"
+                  }
+                ]
+              }
+            } 
+
       }
     }, 
      "settings_conf_params":{
@@ -200,9 +235,7 @@
      "settings_graph_params":{
         "displayName": "Graphical parameters",
         "properties": {
-          "show": {
-                "type": {"bool": true}
-            }, 
+          
             "dataCol": {
               "displayName": "History data color",
               "type": { "fill": { "solid": { "color": true }}}
@@ -228,9 +261,7 @@
      "settings_additional_params":{
         "displayName": "Additional parameters",
         "properties": {
-          "show": {
-                "type": {"bool": true}
-            }, 
+        
             "showWarnings":{
             "displayName": "Show warnings",
             "type": {
@@ -239,13 +270,14 @@
           },
             "showInfo":{
             "displayName": "Show info",
-            "description": "Info contains the selected model: `Additive`(A), `Multiplicative`(M) or `None`(N) per component. Especially informative for `Automatic` mode ",
+            "description": "Display information about the selected model: (A)dditive, (M)ultiplicative, or (N)one",
             "type": {
               "bool": true
             }
           },
            "textSize":{
-            "displayName": "Info font size",
+            "displayName": "Font size",
+			"description": "Font size used to show information",
             "type": {
               "numeric": true
               }

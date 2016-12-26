@@ -28,10 +28,12 @@ module powerbi.extensibility.visual {
     interface VisualSettingsForecastPlotParams {
         show: boolean;
         forecastLength: number;
+       // forecastDate: string;
         seasonType: string;
         errorType: string;
         trendType: string;
         dampingType: string;
+        targetSeason: string;
     }
 
     interface VisualSettingsConfParams {
@@ -74,12 +76,14 @@ module powerbi.extensibility.visual {
             this.imageDiv.appendChild(this.imageElement);
 
             this.settings_forecastPlot_params = <VisualSettingsForecastPlotParams>{
-                show: false,
+               
                 forecastLength: 10,
+             //   forecastDate: "9/25/2010 11:00:00 PM",
                 seasonType: "Automatic",
                 errorType: "Automatic",
                 trendType: "Automatic",
-                dampingType: "Automatic"
+                dampingType: "Automatic", 
+                targetSeason: "Automatic"
             };
 
             this.settings_conf_params = <VisualSettingsConfParams>{
@@ -89,7 +93,7 @@ module powerbi.extensibility.visual {
             };
 
             this.settings_graph_params = <VisualGraphParams>{
-                show: false,
+               
                 dataCol: "orange",
                 forecastCol: "red",
                 percentile: 40,
@@ -98,7 +102,7 @@ module powerbi.extensibility.visual {
             };
 
             this.settings_additional_params = <VisualAdditionalParams>{
-                show: false,
+              
                 showWarnings: false,
                 showInfo: true,
                 textSize: 10
@@ -115,13 +119,14 @@ module powerbi.extensibility.visual {
                 return;
 
             this.settings_forecastPlot_params = <VisualSettingsForecastPlotParams>{
-                show: getValue<boolean>(dataView.metadata.objects, 'settings_forecastPlot_params', 'show', false),
+                //show: getValue<boolean>(dataView.metadata.objects, 'settings_forecastPlot_params', 'show', false),
                 forecastLength: getValue<number>(dataView.metadata.objects, 'settings_forecastPlot_params', 'forecastLength', 10),
-
+           //     forecastDate: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'forecastDate', "9/25/2010 11:00:00 PM"),
                 seasonType: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'seasonType', "Automatic"),
                 errorType: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'errorType', "Automatic"),
                 trendType: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'trendType', "Automatic"),
-                dampingType: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'dampingType', "Automatic")
+                dampingType: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'dampingType', "Automatic"),
+                targetSeason: getValue<string>(dataView.metadata.objects, 'settings_forecastPlot_params', 'targetSeason', "Automatic")
             };
 
 
@@ -132,7 +137,7 @@ module powerbi.extensibility.visual {
 
             }
             this.settings_graph_params = <VisualGraphParams>{
-                show: getValue<boolean>(dataView.metadata.objects, 'settings_graph_params', 'show', false),
+               // show: getValue<boolean>(dataView.metadata.objects, 'settings_graph_params', 'show', false),
                 dataCol: getValue<string>(dataView.metadata.objects, 'settings_graph_params', 'dataCol', "orange"),
                 forecastCol: getValue<string>(dataView.metadata.objects, 'settings_graph_params', 'forecastCol', "red"),
                 percentile: getValue<number>(dataView.metadata.objects, 'settings_graph_params', 'percentile', 40),
@@ -140,7 +145,7 @@ module powerbi.extensibility.visual {
 
             }
             this.settings_additional_params = <VisualAdditionalParams>{
-                show: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'show', false),
+                //show: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'show', false),
                 showWarnings: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'showWarnings', false),
                 showInfo: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'showInfo', true),
                 textSize: getValue<number>(dataView.metadata.objects, 'settings_additional_params', 'textSize', 10)
@@ -176,13 +181,14 @@ module powerbi.extensibility.visual {
                     objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                            show: this.settings_forecastPlot_params.show,
+                           // show: this.settings_forecastPlot_params.show,
                             forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,1000000)),
+            //                forecastDate: this.settings_forecastPlot_params.forecastDate,
                             trendType: this.settings_forecastPlot_params.trendType,
                             dampingType: this.settings_forecastPlot_params.dampingType,
                             errorType: this.settings_forecastPlot_params.errorType,
                             seasonType: this.settings_forecastPlot_params.seasonType,
-                            
+                            targetSeason:this.settings_forecastPlot_params.targetSeason
                         },
                         selector: null
                     });
@@ -192,8 +198,9 @@ module powerbi.extensibility.visual {
                         objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                            show: this.settings_forecastPlot_params.show,
+                            //show: this.settings_forecastPlot_params.show,
                             forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,1000000)),
+             //               forecastDate: this.settings_forecastPlot_params.forecastDate,
                             trendType: this.settings_forecastPlot_params.trendType,
                             errorType: this.settings_forecastPlot_params.errorType,
                             seasonType: this.settings_forecastPlot_params.seasonType,                
@@ -219,7 +226,7 @@ module powerbi.extensibility.visual {
                     objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                            show: this.settings_graph_params.show,
+                            //show: this.settings_graph_params.show,
                             dataCol: this.settings_graph_params.dataCol,
                             forecastCol: this.settings_graph_params.forecastCol,
                             percentile: this.settings_graph_params.percentile,
@@ -236,7 +243,7 @@ module powerbi.extensibility.visual {
 
                             objectName: objectName,
                             properties: {
-                                show: this.settings_additional_params.show,
+                               // show: this.settings_additional_params.show,
                                 showWarnings: this.settings_additional_params.showWarnings,
                                 showInfo: this.settings_additional_params.showInfo,
                                 textSize: this.settings_additional_params.textSize
@@ -249,7 +256,7 @@ module powerbi.extensibility.visual {
 
                             objectName: objectName,
                             properties: {
-                                show: this.settings_additional_params.show,
+                               // show: this.settings_additional_params.show,
                                 showWarnings: this.settings_additional_params.showWarnings,
                                 showInfo: this.settings_additional_params.showInfo,
 

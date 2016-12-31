@@ -29,10 +29,6 @@
 
 Sys.setlocale("LC_ALL","English")
 
-#For DEBUG uses:
-save(list = ls(all.names = TRUE), file='C:/Users/boefraty/projects/PBI/R/tempData.Rda')
-#load(file='C:/Users/boefraty/projects/PBI/R/tempData.Rda')
-
 
 ############ User Parameters #########
 
@@ -458,5 +454,3 @@ if(length(timeSeries)>=minPoints) {
 #add warning as subtitle
 if(showWarnings)
   title(main=NULL, sub=pbiWarning,outer=FALSE, col.sub = "gray50", cex.sub=cexSub)
-
-#remove("dataset")

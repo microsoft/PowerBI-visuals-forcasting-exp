@@ -1,24 +1,25 @@
 {
   "cranPackages": [
     {
-      "name": "graphics",
-      "displayName": "The R Graphics Package",
-      "url": "stat.ethz.ch/R-manual/R-patched/library/graphics/html/00Index.html"
+      "name": "zoo",
+      "displayName": "zoo: S3 Infrastructure for Regular and Irregular Time Series",
+      "url": "https://cran.r-project.org/web/packages/zoo/index.html"
     },
-    {
+	{
       "name": "scales",
       "displayName": "scales: Scale Functions for Visualization",
       "url": "https://cran.r-project.org/web/packages/scales/index.html"
+    },
+	{
+      "name": "reshape2",
+      "displayName": "reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package",
+      "url": "https://cran.r-project.org/web/packages/reshape2/index.html"
     },
     {
       "name": "forecast",
       "displayName": "forecast: Forecasting Functions for Time Series and Linear Models",
       "url": "https://cran.r-project.org/web/packages/forecast/index.html"
-    },
-    {
-      "name": "zoo",
-      "displayName": "zoo: S3 Infrastructure for Regular and Irregular Time Series",
-      "url": "https://cran.r-project.org/web/packages/zoo/index.html"
     }
+    
   ]
 }

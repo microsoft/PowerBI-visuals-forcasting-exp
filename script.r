@@ -9,7 +9,6 @@
 # from the third party providers and under separate license terms, and that it is your responsibility to locate, 
 # understand and comply with those license terms.
 # Microsoft grants you no license rights for third-party software or applications that is obtained using this software.
-
 #
 # WARNINGS:   
 #
@@ -26,9 +25,7 @@
 # REFERENCES: http://www.exponentialsmoothing.net/
 
 
-
-Sys.setlocale("LC_ALL","English")
-
+Sys.setlocale("LC_ALL","English") # internatialisation
 
 ############ User Parameters #########
 

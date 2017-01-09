@@ -26,15 +26,9 @@
 # REFERENCES: http://www.exponentialsmoothing.net/
 
 
-Sys.setlocale("LC_ALL","English")
-
-#For DEBUG uses:
-# save(list = ls(all.names = TRUE), file='C:/Users/boefraty/projects/PBI/R/tempData.Rda')
-# load(file='C:/Users/boefraty/projects/PBI/R/tempData.Rda')
-
+Sys.setlocale("LC_ALL","English") # Internationalization 
 
 ############ User Parameters #########
-
 
 ##PBI_PARAM: Should warnings text be displayed?
 #Type:logical, Default:TRUE, Range:NA, PossibleValues:NA, Remarks: NA
@@ -109,9 +103,6 @@ if (exists("settings_conf_params_upperConfIntervalFactor"))
 
 if(drawConfidenceLevels==FALSE)
   lowerConfInterval=upperConfInterval=0
-
-################## Parameters set by Custom Visual ##################################
-
 
 
 ###############Library Declarations###############

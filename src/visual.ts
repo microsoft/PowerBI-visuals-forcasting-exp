@@ -262,7 +262,7 @@ module powerbi.extensibility.visual {
                         objectName: objectName,
                         properties: {
                         
-                            forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,1000000)),
+                            forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,12000)),
         
                             trendType: this.settings_forecastPlot_params.trendType,
                             dampingType: this.settings_forecastPlot_params.dampingType,

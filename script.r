@@ -38,7 +38,7 @@ libraryRequireInstall("plotly")
 # if(file.exists(dirname(fileRda)))
 # {
 #   if(Sys.getenv("RSTUDIO")!="")
-#     load(file= fileRda) 
+#     load(file= fileRda)
 #   else
 #     save(list = ls(all.names = TRUE), file=fileRda)
 # }
@@ -70,7 +70,7 @@ if(exists("settings_forecastPlot_params_forecastLength"))
   forecastLength = as.numeric(settings_forecastPlot_params_forecastLength)
   if(is.na(forecastLength))
     forecastLength = 10
-  forecastLength = round(max(min(forecastLength,1e+6),1))
+  forecastLength = round(max(min(forecastLength,12000),1))
 }
 
 ##PBI_PARAM Error type
@@ -404,8 +404,14 @@ if(!exists("Date") || !exists("Value"))
     timeSeries=ts()
     showWarnings=TRUE
   }else {
-    
-    dataset = dataset[order(dataset[,1]),]
+    if(N < minPoints)
+    {
+      timeSeries=ts()
+      showWarnings=TRUE
+    }
+    else
+      
+    { dataset = dataset[order(dataset[,1]),]
     parsed_dates=strptime(dataset[,1],"%Y-%m-%dT%H:%M:%S",tz="UTC")
     labTime = names(Date)[1]
     
@@ -423,6 +429,7 @@ if(!exists("Date") || !exists("Value"))
       interval = difftime(parsed_dates[length(parsed_dates)],parsed_dates[1])/(length(parsed_dates)-1) # force equal spacing 
       myFreq = findFreq(parsed_dates, targetS = targetSeason)
       timeSeries=ts(data = dataset[,2], start=1, frequency = round(myFreq))
+    }
     }
   }
 }
@@ -586,6 +593,6 @@ p <- config(p, staticPlot = FALSE, editable = FALSE, sendData = FALSE, showLink 
 
 internalSaveWidget(p, 'out.html')
 ####################################################
-# display in R studio
+#display in R studio
 # if(Sys.getenv("RSTUDIO")!="")
 #   print(p)

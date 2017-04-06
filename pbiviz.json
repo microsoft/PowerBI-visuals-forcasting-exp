@@ -1,7 +1,7 @@
 {
   "visual": {
-    "name": "PowerBI-visuals-forcasting-exp_HTML",
-    "displayName": "Forecasting_HTML",
+    "name": "PowerBI-visuals-forcasting-exp",
+    "displayName": "Forecasting",
     "guid": "PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_HTML",
     "visualClassName": "Visual",
     "version": "1.0.3",

@@ -1,0 +1,204 @@
+{
+    "PBI_API_VERSION": "v1.4.0",
+    "type": "object",
+    "properties": {
+        "displayNameKeys": {
+            "type": "array",
+            "description": "An array of the Cran packages required for the custom R visual script to operate",
+            "items": {
+                "$ref": "#/definitions/displayNameKeys"
+            }
+        }
+    },
+    "definitions": {
+        "displayNameKeys": {
+            "type": "object",
+            "description": "displayNameKeys - Defines the key and translations of a displayed Name",
+            "values": {
+                "type": "object",
+                "description": "translations for display name in different locales",
+                "properties": {
+                    "ar-SA": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Arabic"
+                    },
+                    "bg-BG": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Bulgarian"
+                    },
+                    "ca-ES": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Catalan"
+                    },
+                    "cs-CZ": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Czech"
+                    },
+                    "da-DK": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Danish"
+                    },
+                    "de-DE": {
+                        "type": "string",
+                        "description": "A translation of the displayName to German"
+                    },
+                    "el-GR": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Greek"
+                    },
+                    "en-US": {
+                        "type": "string",
+                        "description": "A translation of the displayName to English"
+                    },
+                    "es-ES": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Spanish"
+                    },
+                    "et-EE": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Estonian"
+                    },
+                    "eu-ES": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Basque"
+                    },
+                    "fi-FI": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Finnish"
+                    },
+                    "fr-FR": {
+                        "type": "string",
+                        "description": "A translation of the displayName to French"
+                    },
+                    "gl-ES": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Galician"
+                    },
+                    "he-IL": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Hebrew"
+                    },
+                    "hi-IN": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Hindi"
+                    },
+                    "hr-HR": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Croatian"
+                    },
+                    "hu-HU": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Hungarian"
+                    },
+                    "id-ID": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Indonesian"
+                    },
+                    "it-IT": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Italian"
+                    },
+                    "ja-JP": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Japanese"
+                    },
+                    "kk-KZ": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Kazakh"
+                    },
+                    "ko-KR": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Korean"
+                    },
+                    "it-LT": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Lithuanian"
+                    },
+                    "lv-LV": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Latvian"
+                    },
+                    "lv-LV": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Malay"
+                    },
+                    "nb-NO": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Norwegian"
+                    },
+                    "nl-NL": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Dutch"
+                    },
+                    "pl-PL": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Polish"
+                    },
+                    "pt-BR": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Portuguese"
+                    },
+                    "pt-PT": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Portuguese"
+                    },
+                    "ro-RO": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Romanian"
+                    },
+                    "ru-RU": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Russian"
+                    },
+                    "sk-SK": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Slovak"
+                    },
+                    "sl-SI": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Slovenian"
+                    },
+                    "sr-Cyrl-RS": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Serbian (Cyrillic)"
+                    },
+                    "sr-Latn-RS": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Serbian (Latin)"
+                    },
+                    "sv-SE": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Swedish"
+                    },
+                    "th-TH": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Thai"
+                    },
+                    "tr-TR": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Turkish"
+                    },
+                    "uk-UA": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Ukrainian"
+                    },
+                    "vi-VN": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Vietnamese"
+                    },
+                    "zh-CN": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Chinese-Simplified"
+                    },
+                    "zh-TW": {
+                        "type": "string",
+                        "description": "A translation of the displayName to Chinese-Tranditional"
+                    }
+                },
+                "required": [
+                ],
+                "additionalProperties": false
+            }
+        }
+    }
+}

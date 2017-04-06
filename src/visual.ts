@@ -75,12 +75,12 @@ module powerbi.extensibility.visual {
             this.imageDiv.appendChild(this.imageElement);
 
             this.settings_forecastPlot_params = <VisualSettingsForecastPlotParams>{
-               
+
                 forecastLength: 10,
                 seasonType: "Automatic",
                 errorType: "Automatic",
                 trendType: "Automatic",
-                dampingType: "Automatic", 
+                dampingType: "Automatic",
                 targetSeason: "Automatic"
             };
 
@@ -91,7 +91,7 @@ module powerbi.extensibility.visual {
             };
 
             this.settings_graph_params = <VisualGraphParams>{
-               
+
                 dataCol: "orange",
                 forecastCol: "red",
                 percentile: 40,
@@ -100,7 +100,7 @@ module powerbi.extensibility.visual {
             };
 
             this.settings_additional_params = <VisualAdditionalParams>{
-              
+
                 showWarnings: false,
                 showInfo: true,
                 textSize: 10
@@ -131,19 +131,19 @@ module powerbi.extensibility.visual {
                 percentile: getValue<number>(dataView.metadata.objects, 'settings_conf_params', 'percentile', 80),
                 upperConfIntervalFactor: getValue<string>(dataView.metadata.objects, 'settings_conf_params', 'upperConfIntervalFactor', "0.5"),
 
-            }
+            };
             this.settings_graph_params = <VisualGraphParams>{
                 dataCol: getValue<string>(dataView.metadata.objects, 'settings_graph_params', 'dataCol', "orange"),
                 forecastCol: getValue<string>(dataView.metadata.objects, 'settings_graph_params', 'forecastCol', "red"),
                 percentile: getValue<number>(dataView.metadata.objects, 'settings_graph_params', 'percentile', 40),
                 weight: getValue<number>(dataView.metadata.objects, 'settings_graph_params', 'weight', 10),
 
-            }
+            };
             this.settings_additional_params = <VisualAdditionalParams>{
                 showWarnings: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'showWarnings', false),
                 showInfo: getValue<boolean>(dataView.metadata.objects, 'settings_additional_params', 'showInfo', true),
                 textSize: getValue<number>(dataView.metadata.objects, 'settings_additional_params', 'textSize', 10)
-            }
+            };
 
             let imageUrl: string = null;
             if (dataView.scriptResult && dataView.scriptResult.payloadBase64) {
@@ -170,33 +170,31 @@ module powerbi.extensibility.visual {
 
             switch (objectName) {
                 case 'settings_forecastPlot_params':
-                    if(this.settings_forecastPlot_params.trendType!="None")
-                    {
+                    if (this.settings_forecastPlot_params.trendType !== "None") {
                     objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                            forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,1000000)),
+                            forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength, 1, 1000000)),
                             trendType: this.settings_forecastPlot_params.trendType,
                             dampingType: this.settings_forecastPlot_params.dampingType,
                             errorType: this.settings_forecastPlot_params.errorType,
                             seasonType: this.settings_forecastPlot_params.seasonType,
-                            targetSeason:this.settings_forecastPlot_params.targetSeason
+                            targetSeason: this.settings_forecastPlot_params.targetSeason
                         },
                         selector: null
                     });
                     }
-                    else
-                    {
+                    else {
                         objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                            forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,1000000)),
+                            forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength, 1, 1000000)),
                             trendType: this.settings_forecastPlot_params.trendType,
                             errorType: this.settings_forecastPlot_params.errorType,
-                            seasonType: this.settings_forecastPlot_params.seasonType,                
+                            seasonType: this.settings_forecastPlot_params.seasonType,
                         },
                         selector: null
-                    }); 
+                    });
                     }
                     break;
 
@@ -205,7 +203,7 @@ module powerbi.extensibility.visual {
                         objectName: objectName,
                         properties: {
                             show: this.settings_conf_params.show,
-                            percentile: inMinMax(this.settings_conf_params.percentile,0,99),
+                            percentile: inMinMax(this.settings_conf_params.percentile, 0, 99),
                             upperConfIntervalFactor: this.settings_conf_params.upperConfIntervalFactor
                         },
                         selector: null
@@ -227,7 +225,7 @@ module powerbi.extensibility.visual {
                     break;
 
                 case 'settings_additional_params':
-                    if (this.settings_additional_params.showInfo == true) {
+                    if (this.settings_additional_params.showInfo === true) {
                         objectEnumeration.push({
 
                             objectName: objectName,

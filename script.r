@@ -248,7 +248,7 @@ findFreq = function(dates, targetS = "Automatic")
 {
   freq = 1
   N = length(dates)
-  nnn = c("Minute","Hour", "Day", "Week", "Month", "Quater", "Year")
+  nnn = c("Minute","Hour", "Day", "Week", "Month", "Quarter", "Year")
   seasons = rep(NaN,7)
   names(seasons) = nnn
   perSeason = seasons
@@ -259,7 +259,7 @@ findFreq = function(dates, targetS = "Automatic")
   seasons["Week"]=round(as.numeric(difftime(dates[length(dates)],dates[1]),units="weeks"))
   seasons["Month"] = seasons["Day"]/30
   seasons["Year"] = seasons["Day"]/365.25
-  seasons["Quater"] = seasons["Year"]*4
+  seasons["Quarter"] = seasons["Year"]*4
   
   perSeason = N/seasons
   
@@ -269,7 +269,7 @@ findFreq = function(dates, targetS = "Automatic")
   if(freq < 2 || round(freq)>24) # if TRUE, target season factor is not good 
     freq = 1
   
-  for( s in rev(nnn)) # check year --> Quater --> etc
+  for( s in rev(nnn)) # check year --> Quarter --> etc
     if(freq==1 || round(freq)>24)
       freq = freqSeason(seasons[s],perSeason[s])
   

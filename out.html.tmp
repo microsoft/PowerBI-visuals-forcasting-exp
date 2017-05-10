@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<script src="out.html_files/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="out.html_files/plotlyjs-1.26.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="out.html_files/plotlyjs-1.26.1/plotly-latest.min.js"></script>
+<script src="out.html_files/plotly-binding-4.6.0/plotly.js"></script>
+<script src="out.html_files/jquery-1.11.3/jquery.min.js"></script>
+<link href="out.html_files/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="out.html_files/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<script src="out.html_files/typedarray-0.1/typedarray.min.js"></script>
+
+</head>
+<body style="background-color:white;">
+<div id="htmlwidget_container">
+  <div id="17d4633c4b91" style="width:100%;height:400px;" class="plotly html-widget"></div>
+</div>
+<script type="application/json" data-for="17d4633c4b91">{"x":{"data":[{"visible":false,"showlegend":false,"xaxis":null,"yaxis":null,"hoverinfo":"text","frame":null}],"layout":{"margin":{"t":44.5595682855957,"r":7.30593607305936,"b":20.2573682025737,"l":10.958904109589},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":"Both 'Date' and 'Value' fields are required.<br>Not enough data points","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":11.9551681195517},"xaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[-0.05,1.05],"ticktext":[],"tickvals":[],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"type":"linear","autorange":false,"tickmode":"array","range":[-0.05,1.05],"ticktext":[],"tickvals":[],"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.6268161062682},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":15.9402241594022},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest"},"source":"A","attrs":{"17d41b4f7d65":{"type":"ggplotly"}},"cur_data":"17d41b4f7d65","visdat":{"17d41b4f7d65":["function (y) ","x"]},"config":{"modeBarButtonsToAdd":[],"cloud":false,"modeBarButtonsToRemove":["toImage","sendDataToCloud","zoom2d","pan","pan2d","select2d","lasso2d","hoverClosestCartesian","hoverCompareCartesian"],"staticPlot":false,"editable":false,"sendData":false,"showLink":false,"displaylogo":false},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1}},"base_url":"https://plot.ly"},"evals":[],"jsHooks":{"render":[{"code":"function(el, x) { var ctConfig = crosstalk.var('plotlyCrosstalkOpts').set({\"on\":\"plotly_click\",\"persistent\":false,\"dynamic\":false,\"selectize\":false,\"opacityDim\":0.2,\"selected\":{\"opacity\":1}}); }","data":null},{"code":"function(el, x) { var ctConfig = crosstalk.var('plotlyCrosstalkOpts').set({\"on\":\"plotly_click\",\"persistent\":false,\"dynamic\":false,\"selectize\":false,\"opacityDim\":0.2,\"selected\":{\"opacity\":1}}); }","data":null}]}}</script>
+<script type="application/htmlwidget-sizing" data-for="17d4633c4b91">{"viewer":{"width":"100%","height":400,"padding":15,"fill":true},"browser":{"width":"100%","height":400,"padding":40,"fill":true}}</script>
+</body>
+</html>

@@ -17,3 +17,5 @@ dist/*
 .tmp/drop/pbiviz.json
 .tmp/drop/status
 .tmp/drop/pbiviz.json
+.tmp/drop/status
+dist/PowerBI-visuals-forcasting-exp.pbiviz

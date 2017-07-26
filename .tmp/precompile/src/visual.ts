@@ -87,13 +87,13 @@ module powerbi.extensibility.visual.PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_
 
             // default parameters
             this.settings_forecastPlot_params = <VisualSettingsForecastPlotParams>{
-               
+
                 forecastLength: 10,
              //   forecastDate: "9/25/2010 11:00:00 PM",
                 seasonType: "Automatic",
                 errorType: "Automatic",
                 trendType: "Automatic",
-                dampingType: "Automatic", 
+                dampingType: "Automatic",
                 targetSeason: "Automatic"
             };
 
@@ -104,7 +104,7 @@ module powerbi.extensibility.visual.PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_
             };
 
             this.settings_graph_params = <VisualGraphParams>{
-               
+
                 dataCol: "orange",
                 forecastCol: "red",
                 percentile: 40,
@@ -113,7 +113,7 @@ module powerbi.extensibility.visual.PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_
             };
 
             this.settings_additional_params = <VisualAdditionalParams>{
-              
+           
            //     showWarnings: false,
                 showInfo: true,
                 textSize: 10
@@ -231,7 +231,7 @@ module powerbi.extensibility.visual.PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_
                 percentile: getValue<number>( objects, 'settings_conf_params', 'percentile', 80),
                 upperConfIntervalFactor: getValue<string>( objects, 'settings_conf_params', 'upperConfIntervalFactor', "0.5"),
 
-            }
+            };
             this.settings_graph_params = <VisualGraphParams>{
                // show: getValue<boolean>( objects, 'settings_graph_params', 'show', false),
                 dataCol: getValue<string>( objects, 'settings_graph_params', 'dataCol', "orange"),
@@ -239,8 +239,9 @@ module powerbi.extensibility.visual.PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_
                 percentile: getValue<number>( objects, 'settings_graph_params', 'percentile', 40),
                 weight: getValue<number>( objects, 'settings_graph_params', 'weight', 10),
 
-            }
+            };
             this.settings_additional_params = <VisualAdditionalParams>{
+
                 //show: getValue<boolean>( objects, 'settings_additional_params', 'show', false),
              //   showWarnings: getValue<boolean>( objects, 'settings_additional_params', 'showWarnings', false),
                 showInfo: getValue<boolean>( objects, 'settings_additional_params', 'showInfo', true),
@@ -256,37 +257,35 @@ module powerbi.extensibility.visual.PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_
 
             switch (objectName) {
                 case 'settings_forecastPlot_params':
-                    if(this.settings_forecastPlot_params.trendType!="None")
-                    {
+                    if (this.settings_forecastPlot_params.trendType !== "None") {
                     objectEnumeration.push({
                         objectName: objectName,
                         properties: {
+
                         
                             forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,12000)),
-        
                             trendType: this.settings_forecastPlot_params.trendType,
                             dampingType: this.settings_forecastPlot_params.dampingType,
                             errorType: this.settings_forecastPlot_params.errorType,
                             seasonType: this.settings_forecastPlot_params.seasonType,
-                            targetSeason:this.settings_forecastPlot_params.targetSeason
+                            targetSeason: this.settings_forecastPlot_params.targetSeason
                         },
                         selector: null
                     });
                     }
-                    else
-                    {
+                    else {
                         objectEnumeration.push({
                         objectName: objectName,
                         properties: {
+
                         
                             forecastLength: Math.round(inMinMax(this.settings_forecastPlot_params.forecastLength,1,100000)),
-        
                             trendType: this.settings_forecastPlot_params.trendType,
                             errorType: this.settings_forecastPlot_params.errorType,
-                            seasonType: this.settings_forecastPlot_params.seasonType,                
+                            seasonType: this.settings_forecastPlot_params.seasonType,
                         },
                         selector: null
-                    }); 
+                    });
                     }
                     break;
 
@@ -295,7 +294,7 @@ module powerbi.extensibility.visual.PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_
                         objectName: objectName,
                         properties: {
                             show: this.settings_conf_params.show,
-                            percentile: inMinMax(this.settings_conf_params.percentile,0,99),
+                            percentile: inMinMax(this.settings_conf_params.percentile, 0, 99),
                             upperConfIntervalFactor: this.settings_conf_params.upperConfIntervalFactor
                         },
                         selector: null
@@ -318,7 +317,7 @@ module powerbi.extensibility.visual.PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_
                     break;
 
                 case 'settings_additional_params':
-                    if (this.settings_additional_params.showInfo == true) {
+                    if (this.settings_additional_params.showInfo === true) {
                         objectEnumeration.push({
 
                             objectName: objectName,

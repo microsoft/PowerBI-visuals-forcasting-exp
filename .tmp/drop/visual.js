@@ -155,24 +155,24 @@ var powerbi;
                      * Gets conditional property value for a particular object of type string
                      *
                      * @function
-                     * @param {string} inVal     -  current value of parameter
+                     * @param {string} inVal     - current value of parameter
                      * @param {string} contrVal   - control value
                      * @param {string} contrVal2Compare     - specific string to be compared with contrVal
                      * @param {boolean} logic          -  true / false "logic"
                      * @param {string} outValIfCondTrue          - output value if comparison (contrVal == contrVal2Compare) comes out as "logic"
                      */
                 function ifStringReturnString(inVal, contrVal, contrVal2Compare, outValIfCondTrue, logic, applyNow) {
-                    if (applyNow && contrVal == contrVal2Compare && logic == true)
+                    if (applyNow && contrVal === contrVal2Compare && logic === true)
                         return outValIfCondTrue;
-                    if (applyNow && contrVal != contrVal2Compare && logic == false)
+                    if (applyNow && contrVal !== contrVal2Compare && logic === false)
                         return outValIfCondTrue;
                     return inVal;
                 }
                 PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_HTML.ifStringReturnString = ifStringReturnString;
                 function ifStringReturnStringClustersMethod(numClustersMethods, numOfClusters) {
-                    if (numOfClusters != "auto")
+                    if (numOfClusters !== "auto")
                         return "None";
-                    if (numOfClusters == "auto" && numClustersMethods == "None")
+                    if (numOfClusters === "auto" && numClustersMethods === "None")
                         return "fast";
                     return numClustersMethods;
                 }
@@ -398,7 +398,7 @@ var powerbi;
                         var objectEnumeration = [];
                         switch (objectName) {
                             case 'settings_forecastPlot_params':
-                                if (this.settings_forecastPlot_params.trendType != "None") {
+                                if (this.settings_forecastPlot_params.trendType !== "None") {
                                     objectEnumeration.push({
                                         objectName: objectName,
                                         properties: {
@@ -449,7 +449,7 @@ var powerbi;
                                 });
                                 break;
                             case 'settings_additional_params':
-                                if (this.settings_additional_params.showInfo == true) {
+                                if (this.settings_additional_params.showInfo === true) {
                                     objectEnumeration.push({
                                         objectName: objectName,
                                         properties: {
@@ -493,7 +493,7 @@ var powerbi;
                 displayName: 'Forecasting',
                 class: 'Visual',
                 version: '1.0.3',
-                apiVersion: '1.4.0',
+                apiVersion: '1.7.0',
                 create: function (options) { return new powerbi.extensibility.visual.PBI_CV_8EDDC07B_EE79_4418_A84C_D73897C0E21F_HTML.Visual(options); },
                 custom: true
             };

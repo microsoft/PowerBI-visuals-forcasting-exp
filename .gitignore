@@ -4,3 +4,16 @@ dist
 .api
 *.log
 .api/*
+.tmp/*
+dist/*
+.tmp/drop/pbiviz.json
+.tmp/drop/pbiviz.json
+.tmp/drop/visual.js
+.tmp/precompile/src/visual.ts
+.tmp/drop/pbiviz.json
+.tmp/drop/status
+.tmp/drop/visual.js.map
+.tmp/drop/pbiviz.json
+.tmp/drop/pbiviz.json
+.tmp/drop/status
+.tmp/drop/pbiviz.json

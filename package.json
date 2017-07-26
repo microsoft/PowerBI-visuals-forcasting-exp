@@ -1,7 +1,7 @@
 {
   "name": "visual",
   "scripts": {
-    "postinstall": "pbiviz update 1.6.0",
+    "postinstall": "pbiviz update 1.7.0",
     "pbiviz": "pbiviz",
     "package": "pbiviz package",
     "lint": "tslint -r \"node_modules/tslint-microsoft-contrib\" \"+(src)/**/*.ts\"",
@@ -10,6 +10,6 @@
   "devDependencies": {
     "tslint": "^4.4.2",
     "tslint-microsoft-contrib": "^4.0.0",
-    "powerbi-visuals-tools": "1.6.2"
+    "powerbi-visuals-tools": "1.7.1"
   }
 }

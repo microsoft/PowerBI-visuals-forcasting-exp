@@ -34,7 +34,7 @@
         },
         "script": {
           "scriptProviderDefault": "R",
-          "scriptOutputType": "png",
+          "scriptOutputType": "html",
           "source": {
             "objectName": "rcv_script",
             "propertyName": "source"
@@ -182,8 +182,8 @@
                     "value": "Month"
                   },
                   {
-                    "displayName": "Quater",
-                    "value": "Quater"
+                    "displayName": "Quarter",
+                    "value": "Quarter"
                   }, 
                   {
                     "displayName": "Year",
@@ -261,13 +261,6 @@
      "settings_additional_params":{
         "displayName": "Additional parameters",
         "properties": {
-        
-            "showWarnings":{
-            "displayName": "Show warnings",
-            "type": {
-              "bool": true
-            }
-          },
             "showInfo":{
             "displayName": "Show info",
             "description": "Display information about the selected model: (A)dditive, (M)ultiplicative, or (N)one",

@@ -26,3 +26,4 @@ out.html.tmp
 out.html.*
 out.html_files/*
 out.html_files
+dist/PowerBI-visuals-forcasting-exp.pbiviz

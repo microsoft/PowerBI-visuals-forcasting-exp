@@ -39,6 +39,11 @@
       "name": "XML",
       "displayName": "XML",
       "url": "https://cran.r-project.org/web/packages/XML/index.html"
+    },
+    {
+      "name": "caTools",
+      "displayName": "caTools",
+      "url": "https://cran.r-project.org/web/packages/caTools/index.html"
     }
     
   ]

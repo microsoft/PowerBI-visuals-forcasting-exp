@@ -115,5 +115,14 @@ FindSrcReplacement <- function(str)
   str = paste('https://cdn.plot.ly/plotly-', verstr,'.min.js', sep='')
   return(str)
 }
+#ReadFullFileReplaceString
+ReadFullFileReplaceString <- function(fnameIn, fnameOut, sourceString,targetString)
+{
+  if(!file.exists(fnameIn))
+    return(NULL)
+  
+  tx  <- readLines(fnameIn)
+  tx2  <- gsub(pattern = sourceString, replace = targetString, x = tx)
+  writeLines(tx2, con = fnameOut)
+}
 #################################################
-

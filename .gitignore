@@ -1,4 +1,5 @@
 node_modules
+node_modules/*
 .tmp
 dist
 .api
@@ -6,7 +7,6 @@ dist
 .api/*
 .tmp/*
 dist/*
-.tmp/drop/pbiviz.json
 .tmp/drop/pbiviz.json
 .tmp/drop/visual.js
 .tmp/precompile/src/visual.ts
@@ -27,4 +27,5 @@ out.html.*
 out.html_files/*
 out.html_files
 dist/PowerBI-visuals-forcasting-exp.pbiviz
-dist/PowerBI-visuals-forcasting-exp.pbiviz
+assets/Presentation1.pptx
+assets/*_testing.pbix

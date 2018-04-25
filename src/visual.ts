@@ -25,24 +25,6 @@
  */
 module powerbi.extensibility.visual {
     "use strict";
-    // below is a snippet of a definition for an object which will contain the property values
-    // selected by the users
-    /*interface VisualSettings {
-        lineColor: string;
-    }*/
-
-    // to allow this scenario you should first the following JSON definition to the capabilities.json file
-    // under the "objects" property:
-    // "settings": {
-    //     "displayName": "Visual Settings",
-    //     "description": "Visual Settings Tooltip",
-    //     "properties": {
-    //         "lineColor": {
-    //         "displayName": "Line Color",
-    //         "type": { "fill": { "solid": { "color": true }}}
-    //         }
-    //     }
-    // }
 
     // in order to improve the performance, one can update the <head> only in the initial rendering.
     // set to 'true' if you are using different packages to create the widgets
@@ -154,10 +136,6 @@ module powerbi.extensibility.visual {
          * objects and properties you want to expose to the users in the property pane.
          * 
          */
-        // public enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions):
-        //     VisualObjectInstance[] | VisualObjectInstanceEnumerationObject {
-        //     return VisualSettings.enumerateObjectInstances(this.settings || VisualSettings.getDefault(), options);
-        // }
         public enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstanceEnumeration {
             let objectName = options.objectName;
             let objectEnumeration = [];
@@ -165,34 +143,34 @@ module powerbi.extensibility.visual {
             switch (objectName) {
                 case 'settings_forecastPlot_params':
                     if (this.settings.settings_forecastPlot_params.trendType !== "None") {
-                    objectEnumeration.push({
-                        objectName: objectName,
-                        properties: {
+                        objectEnumeration.push({
+                            objectName: objectName,
+                            properties: {
 
-                            
-                            forecastLength: Math.round(inMinMax(this.settings.settings_forecastPlot_params.forecastLength,1,12000)),
-                            trendType: this.settings.settings_forecastPlot_params.trendType,
-                            dampingType: this.settings.settings_forecastPlot_params.dampingType,
-                            errorType: this.settings.settings_forecastPlot_params.errorType,
-                            seasonType: this.settings.settings_forecastPlot_params.seasonType,
-                            targetSeason: this.settings.settings_forecastPlot_params.targetSeason
-                        },
-                        selector: null
-                    });
+
+                                forecastLength: Math.round(inMinMax(this.settings.settings_forecastPlot_params.forecastLength, 1, 12000)),
+                                trendType: this.settings.settings_forecastPlot_params.trendType,
+                                dampingType: this.settings.settings_forecastPlot_params.dampingType,
+                                errorType: this.settings.settings_forecastPlot_params.errorType,
+                                seasonType: this.settings.settings_forecastPlot_params.seasonType,
+                                targetSeason: this.settings.settings_forecastPlot_params.targetSeason
+                            },
+                            selector: null
+                        });
                     }
                     else {
                         objectEnumeration.push({
-                        objectName: objectName,
-                        properties: {
+                            objectName: objectName,
+                            properties: {
 
-                        
-                            forecastLength: Math.round(inMinMax(this.settings.settings_forecastPlot_params.forecastLength,1,100000)),
-                            trendType: this.settings.settings_forecastPlot_params.trendType,
-                            errorType: this.settings.settings_forecastPlot_params.errorType,
-                            seasonType: this.settings.settings_forecastPlot_params.seasonType,
-                        },
-                        selector: null
-                    });
+
+                                forecastLength: Math.round(inMinMax(this.settings.settings_forecastPlot_params.forecastLength, 1, 100000)),
+                                trendType: this.settings.settings_forecastPlot_params.trendType,
+                                errorType: this.settings.settings_forecastPlot_params.errorType,
+                                seasonType: this.settings.settings_forecastPlot_params.seasonType,
+                            },
+                            selector: null
+                        });
                     }
                     break;
 
@@ -212,11 +190,11 @@ module powerbi.extensibility.visual {
                     objectEnumeration.push({
                         objectName: objectName,
                         properties: {
-                       
+
                             dataCol: this.settings.settings_graph_params.dataCol,
                             forecastCol: this.settings.settings_graph_params.forecastCol,
                             percentile: this.settings.settings_graph_params.percentile,
-                            weight: inMinMax(this.settings.settings_graph_params.weight, 1,50)
+                            weight: inMinMax(this.settings.settings_graph_params.weight, 1, 50)
 
                         },
                         selector: null
@@ -229,8 +207,6 @@ module powerbi.extensibility.visual {
 
                             objectName: objectName,
                             properties: {
-                             
-                           //     showWarnings: this.settings.settings_additional_params.showWarnings,
                                 showInfo: this.settings.settings_additional_params.showInfo,
                                 textSize: this.settings.settings_additional_params.textSize
                             },
@@ -242,17 +218,14 @@ module powerbi.extensibility.visual {
 
                             objectName: objectName,
                             properties: {
-                          
-           //                     showWarnings: this.settings.settings_additional_params.showWarnings,
                                 showInfo: this.settings.settings_additional_params.showInfo,
-
                             },
                             selector: null
                         });
 
                     }
                     break;
-                    case 'settings_export_params':
+                case 'settings_export_params':
                     objectEnumeration.push({
                         objectName: objectName,
                         properties: {
@@ -268,5 +241,5 @@ module powerbi.extensibility.visual {
             return objectEnumeration;
         }
     }
-    
+
 }

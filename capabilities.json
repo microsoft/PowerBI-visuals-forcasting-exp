@@ -62,7 +62,7 @@
     },
     "settings_forecastPlot_params": {
       "displayName": "Forecasting settings",
-      "description": "Basic decomposition models are:  1. Additive: x[t] = Trend + Seasonal + Random, 2. Multiplicative:  x[t] = Trend * Seasonal * Random. Hybrid models are allowed. Any forbiden model combination will be replaced by `Automatic`",
+      "description": "Basic decomposition models are:  1. Additive: x[t] = Trend + Seasonal + Remainder, 2. Multiplicative:  x[t] = Trend * Seasonal * Remainder. Hybrid models are allowed. Any forbiden model combination will be replaced by `Automatic`",
       "properties": {
       
         "forecastLength": { 
@@ -72,7 +72,7 @@
           },
       
         "errorType": {
-              "displayName": "Error component",
+              "displayName": "Remainder component",
               "type": {
                 "enumeration": [
                   {
@@ -201,34 +201,125 @@
           "show": {
                 "type": {"bool": true}
             }, 
-        "percentile": { "displayName": "Confidence", "type": { "numeric": true } },
-        "upperConfIntervalFactor": { 
-          "displayName": "Upper interval factor",
-          "description": "Upper Confidence =  Confidence + (100 - Confidence)*UpperIntervalFactor ", 
-        "type": {
-                "enumeration": [
-                  {
-                    "displayName": "0",
-                    "value": "0"
-                  },
-                  {
-                    "displayName": "0.5",
-                    "value": "0.5"
-                  },
-                  {
-                    "displayName": "0.75",
-                    "value": "0.75"
-                  },
-                  {
-                    "displayName": "0.9",
-                    "value": "0.9"
-                  },
-                  {
-                    "displayName": "0.95",
-                    "value": "0.95"
-                  }
-                ]
-              }
+          "confInterval1": {
+            "displayName": "Confidence level",
+            "description": "Select first confidence interval",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "0",
+                  "value": "0"
+                },
+                {
+                  "displayName": "0.2",
+                  "value": "0.2"
+                },
+                {
+                  "displayName": "0.4",
+                  "value": "0.4"
+                },
+                {
+                  "displayName": "0.5",
+                  "value": "0.5"
+                },
+                {
+                  "displayName": "0.75",
+                  "value": "0.75"
+                },
+                {
+                  "displayName": "0.8",
+                  "value": "0.8"
+                },
+                {
+                  "displayName": "0.9",
+                  "value": "0.9"
+                },
+                {
+                  "displayName": "0.95",
+                  "value": "0.95"
+                },
+                {
+                  "displayName": "0.975",
+                  "value": "0.975"
+                },
+                {
+                  "displayName": "0.98",
+                  "value": "0.98"
+                },
+                {
+                  "displayName": "0.99",
+                  "value": "0.99"
+                },
+                {
+                  "displayName": "0.995",
+                  "value": "0.995"
+                },
+                {
+                  "displayName": "0.999",
+                  "value": "0.999"
+                }
+              ]
+            }
+          },
+          "confInterval2": {
+            "displayName": "Confidence level #2",
+            "description": "Select additional confidence interval",
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "0",
+                  "value": "0"
+                },
+                {
+                  "displayName": "0.2",
+                  "value": "0.2"
+                },
+                {
+                  "displayName": "0.4",
+                  "value": "0.4"
+                },
+                {
+                  "displayName": "0.5",
+                  "value": "0.5"
+                },
+                {
+                  "displayName": "0.75",
+                  "value": "0.75"
+                },
+                {
+                  "displayName": "0.8",
+                  "value": "0.8"
+                },
+                {
+                  "displayName": "0.9",
+                  "value": "0.9"
+                },
+                {
+                  "displayName": "0.95",
+                  "value": "0.95"
+                },
+                {
+                  "displayName": "0.975",
+                  "value": "0.975"
+                },
+                {
+                  "displayName": "0.98",
+                  "value": "0.98"
+                },
+                {
+                  "displayName": "0.99",
+                  "value": "0.99"
+                },
+                {
+                  "displayName": "0.995",
+                  "value": "0.995"
+                },
+                {
+                  "displayName": "0.999",
+                  "value": "0.999"
+                }
+              ]
+            }
           }
         }
     },
@@ -276,10 +367,56 @@
               }
             }            
         }
+    },
+    "settings_export_params": {
+      "displayName": "Export data",
+      "description": "Export result of clustering",
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "limitExportSize": {
+          "displayName": "Maximum exported rows",
+          "description": "Limit number of rows",
+          "type": {
+            "enumeration": [{
+                "displayName": "1000",
+                "value": "1000"
+              },
+              {
+                "displayName": "10000",
+                "value": "10000"
+              },
+              {
+                "displayName": "50000",
+                "value": "50000"
+              },
+              {
+                "displayName": "unlimited",
+                "value": "100000"
+              }
+            ]
+          }
+        },
+        "method": {
+          "displayName": "Method",
+          "description": "Method",
+          "type": {
+            "enumeration": [{
+                "displayName": "copy to clipboard",
+                "value": "copy"
+              },
+              {
+                "displayName": "download (only service)",
+                "value": "download"
+              }
+            ]
+          }
+        }
+      }
     }
-
-
-
   },
   "suppressDefaultTitle": true
 }

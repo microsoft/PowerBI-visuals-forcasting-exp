@@ -29,20 +29,10 @@
 source('./r_files/flatten_HTML.r')
 
 ############### Library Declarations ###############
-libraryRequireInstall("ggplot2");
+libraryRequireInstall("ggplot2")
 libraryRequireInstall("plotly")
+libraryRequireInstall("caTools")
 ####################################################
-
-#DEBUG 
-# fileRda = "C:/Users/boefraty/projects/PBI/R/tempData.Rda"
-# if(file.exists(dirname(fileRda)))
-# {
-#   if(Sys.getenv("RSTUDIO")!="")
-#     load(file= fileRda)
-#   else
-#     save(list = ls(all.names = TRUE), file=fileRda)
-# }
-
 
 Sys.setlocale("LC_ALL","English") # Internationalization 
 
@@ -106,20 +96,34 @@ drawConfidenceLevels = TRUE
 if(exists("settings_conf_params_show"))
   drawConfidenceLevels = settings_conf_params_show
 
-
-lowerConfInterval = 0.8
-if (exists("settings_conf_params_percentile")) 
-{ 
-  lowerConfInterval = as.numeric(settings_conf_params_percentile)/100
-  if(is.na(lowerConfInterval))
-    lowerConfInterval = 0.8
-  
-  lowerConfInterval = max(min(lowerConfInterval,0.99),0)
+##PBI_PARAM: Confidence level
+#Type:enum, Default:"0.8", Range:NA, PossibleValues:0, 0.5 etc, Remarks: NA
+confInterval1 = 0.8
+if(exists("settings_conf_params_confInterval1"))
+{
+  confInterval1 = as.numeric(settings_conf_params_confInterval1)
 }
 
-upperConfInterval = 0.98
-if (exists("settings_conf_params_upperConfIntervalFactor")) 
-{ upperConfInterval = lowerConfInterval+(1-lowerConfInterval)*as.numeric(settings_conf_params_upperConfIntervalFactor)}
+
+##PBI_PARAM: Confidence level
+#Type:enum, Default:"0.95", Range:NA, PossibleValues:0, 0.5 etc, Remarks: NA
+confInterval2 = 0.95
+if(exists("ssettings_conf_params_confInterval2"))
+{
+  confInterval2 = as.numeric(settings_conf_params_confInterval2)
+}
+
+
+if(confInterval1 > confInterval2)
+{#switch places
+  temp = confInterval1
+  confInterval1 = confInterval2
+  confInterval2 = temp
+}
+
+lowerConfInterval = confInterval1
+upperConfInterval = confInterval2
+
 
 if(drawConfidenceLevels==FALSE)
   lowerConfInterval=upperConfInterval=0
@@ -164,6 +168,23 @@ cexSub = 0.75
 if(exists("settings_additional_params_textSize"))
   cexSub = as.numeric(settings_additional_params_textSize)/12
 
+##PBI_PARAM: export out data to HTML?
+#Type:logical, Default:FALSE, Range:NA, PossibleValues:NA, Remarks: NA
+keepOutData = FALSE
+if(exists("settings_export_params_show"))
+  keepOutData = settings_export_params_show 
+
+##PBI_PARAM: method of export interface
+#Type: string , Default:"copy",  Range:NA, PossibleValues:"copy", "download",  Remarks: NA
+exportMethod = "copy"
+if(exists("settings_export_params_method"))
+  exportMethod = settings_export_params_method 
+
+##PBI_PARAM: limit the out table exported
+#Type: string , Default:1000,  Range:NA, PossibleValues:"1000", "10000", Inf,  Remarks: NA
+limitExportSize = 1000
+if(exists("settings_export_params_limitExportSize"))
+  limitExportSize = as.numeric(settings_export_params_limitExportSize)
 
 ###############Internal parameters definitions#################
 
@@ -375,6 +396,65 @@ getAngleXlabels = function(mylabels)
   return(45)
   
 }
+
+ConvertDF64encoding = function (df, withoutEncoding = FALSE)
+{
+  header_row <- paste(names(df), collapse=", ")
+  tab <- apply(df, 1, function(x)paste(x, collapse=", "))
+  
+  if(withoutEncoding){
+    text <- paste(c(header_row, tab), collapse="\n")
+    x <- text
+  }
+  else
+  {
+    text <- paste(c(header_row, tab), collapse="\n")
+    x <- caTools::base64encode(text)
+  }
+  return(x)
+}
+
+
+KeepOutDataInHTML = function(df, htmlFile = 'out.html', exportMethod = "copy", limitExportSize = 1000)
+{
+  if(nrow(df)>limitExportSize)
+    df = df[1:limitExportSize,]
+  
+  outDataString64 = ConvertDF64encoding(df)
+  
+  linkElem = '\n<a href=""  download="data.csv"  style="position: absolute; top:0px; left: 0px; z-index: 20000;" id = "mydataURL">export</a>\n'
+  updateLinkElem = paste('<script>\n link_element = document.getElementById("mydataURL");link_element.href = outDataString64href;', '\n</script> ', sep =' ')
+  var64 = paste('<script> outDataString64 ="', outDataString64, '"; </script>', sep ="")
+  var64href = paste('<script> outDataString64href ="data:;base64,', outDataString64, '"; </script>', sep ="")
+  
+  buttonElem = '<button style="position: absolute; top:0px; left: 0px; z-index: 20000;"  onclick="myFunctionCopy(1)">copy to clipboard</button>'
+  funcScript = '<script> 
+  function myFunctionCopy(is64) 
+  {
+  const el = document.createElement("textarea");
+  if(is64)
+  {
+  el.value = atob(outDataString64);
+  }
+  else
+  {
+  el.value = outDataStringPlane;
+  }
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);};	
+  </script>'
+  
+  if(exportMethod == "copy")
+    endOfBody = paste(var64,funcScript, buttonElem,'\n</body>',sep ="")
+  else#"download"
+    endOfBody = paste(linkElem,var64, var64href,updateLinkElem,'\n</body>',sep ="")
+  
+  ReadFullFileReplaceString('out.html', 'out.html', '</body>', endOfBody)
+  
+}
+
 
 
 ###############Upfront input correctness validations (where possible)#################
@@ -592,7 +672,29 @@ p <- config(p, staticPlot = FALSE, editable = FALSE, sendData = FALSE, showLink 
             displaylogo = FALSE,  collaborate = FALSE, cloud=FALSE)
 
 internalSaveWidget(p, 'out.html')
-####################################################
-#display in R studio
-# if(Sys.getenv("RSTUDIO")!="")
-#   print(p)
+
+# resolve bug in plotly (margin of 40 px)
+ReadFullFileReplaceString('out.html', 'out.html', ',"padding":40,', ',"padding":0,')
+
+if(keepOutData)
+{
+  padNA1 = rep(NA,length(x_full))
+  padNA2 = rep(NA,length(f_full))
+  if(!exists("lower1"))
+    lower1 = lower2 = upper1 = upper2 = padNA2;
+
+  
+  lower1 = c(padNA1,lower1)
+  lower2 = c(padNA1,lower2)
+  upper1 = c(padNA1,upper1)
+  upper2 = c(padNA1,upper2)
+  
+  exportDF = data.frame(Date = as.character(c(x_full,f_full)),Value = c(y1,y2),
+                        lower1 = lower1,
+                        lower2 = lower2,
+                        upper1 = upper1,
+                        upper2 = upper2)
+  colnames(exportDF)[c(1,2)] = c(labTime,labValue)
+  
+  KeepOutDataInHTML(df = exportDF, htmlFile = 'out.html', exportMethod = exportMethod, limitExportSize = limitExportSize)
+}

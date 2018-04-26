@@ -118,23 +118,18 @@ module powerbi.extensibility.visual {
         private static parseSettings(dataView: DataView): VisualSettings {
             return VisualSettings.parse(dataView) as VisualSettings;
         }
-        /** 
-         * This function gets called for each of the objects defined in the capabilities files and allows you to select which of the 
-         * objects and properties you want to expose to the users in the property pane.
-         * 
-         */
+
+        //This function gets called for each of the objects defined in the capabilities files and allows you to select which of the 
+        //objects and properties you want to expose to the users in the property pane. 
         public enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstanceEnumeration {
             let objectName = options.objectName;
             let objectEnumeration = [];
-
             switch (objectName) {
                 case 'settings_forecastPlot_params':
                     if (this.settings.settings_forecastPlot_params.trendType !== "None") {
                         objectEnumeration.push({
                             objectName: objectName,
                             properties: {
-
-
                                 forecastLength: Math.round(inMinMax(this.settings.settings_forecastPlot_params.forecastLength, 1, 12000)),
                                 trendType: this.settings.settings_forecastPlot_params.trendType,
                                 dampingType: this.settings.settings_forecastPlot_params.dampingType,
@@ -149,8 +144,6 @@ module powerbi.extensibility.visual {
                         objectEnumeration.push({
                             objectName: objectName,
                             properties: {
-
-
                                 forecastLength: Math.round(inMinMax(this.settings.settings_forecastPlot_params.forecastLength, 1, 100000)),
                                 trendType: this.settings.settings_forecastPlot_params.trendType,
                                 errorType: this.settings.settings_forecastPlot_params.errorType,
@@ -160,7 +153,6 @@ module powerbi.extensibility.visual {
                         });
                     }
                     break;
-
                 case 'settings_conf_params':
                     objectEnumeration.push({
                         objectName: objectName,
@@ -172,7 +164,6 @@ module powerbi.extensibility.visual {
                         selector: null
                     });
                     break;
-
                 case 'settings_graph_params':
                     objectEnumeration.push({
                         objectName: objectName,
@@ -187,11 +178,9 @@ module powerbi.extensibility.visual {
                         selector: null
                     });
                     break;
-
                 case 'settings_additional_params':
                     if (this.settings.settings_additional_params.showInfo === true) {
                         objectEnumeration.push({
-
                             objectName: objectName,
                             properties: {
                                 showInfo: this.settings.settings_additional_params.showInfo,
@@ -209,7 +198,6 @@ module powerbi.extensibility.visual {
                             },
                             selector: null
                         });
-
                     }
                     break;
                 case 'settings_export_params':
@@ -224,9 +212,7 @@ module powerbi.extensibility.visual {
                     });
                     break;
             };
-
             return objectEnumeration;
         }
     }
-
 }

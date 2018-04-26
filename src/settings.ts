@@ -34,13 +34,13 @@ module powerbi.extensibility.visual {
     return a;
   }
   export class VisualSettings extends DataViewObjectsParser {
-    public settings_forecastPlot_params: settings_forecastPlot_params = new settings_forecastPlot_params();
-    public settings_conf_params: settings_conf_params = new settings_conf_params();
-    public settings_graph_params: settings_graph_params = new settings_graph_params();
-    public settings_additional_params: settings_additional_params = new settings_additional_params();
-    public settings_export_params: settings_export_params = new settings_export_params();
+    public settings_forecastPlot_params: SettingsForecastPlotParams = new SettingsForecastPlotParams();
+    public settings_conf_params: SettingsConfParams = new SettingsConfParams();
+    public settings_graph_params: SettingsGraphParams = new SettingsGraphParams();
+    public settings_additional_params: SettingsAdditionalParams = new SettingsAdditionalParams();
+    public settings_export_params: SettingsExportParams = new SettingsExportParams();
   }
-  export class settings_forecastPlot_params {
+  export class SettingsForecastPlotParams {
     public forecastLength: number = 10;
     public seasonType: string = "Automatic";
     public errorType: string = "Automatic";
@@ -48,22 +48,22 @@ module powerbi.extensibility.visual {
     public dampingType: string = "Automatic";
     public targetSeason: string = "Automatic";
   }
-  export class settings_conf_params {
+  export class SettingsConfParams {
     public show: boolean = true;
     public confInterval1: string = "0.8";
     public confInterval2: string = "0.95";
   }
-  export class settings_graph_params {
+  export class SettingsGraphParams {
     public dataCol: string = "orange";
     public forecastCol: string = "red";
     public percentile: number = 40;
     public weight: number = 10;
   }
-  export class settings_additional_params {
+  export class SettingsAdditionalParams {
     public showInfo: boolean = true;
     public textSize: number = 10;
   }
-  export class settings_export_params {
+  export class SettingsExportParams {
     public show: boolean = false;
     public limitExportSize: string = "10000";
     public method: string = "copy";

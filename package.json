@@ -10,6 +10,7 @@
   "devDependencies": {
     "tslint": "^4.4.2",
     "tslint-microsoft-contrib": "^4.0.0",
-    "powerbi-visuals-tools": "1.10.0"
+    "powerbi-visuals-tools": "1.10.0",
+    "powerbi-visuals-utils-dataviewutils": "1.2.0"
   }
 }

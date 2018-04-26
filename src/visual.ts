@@ -50,7 +50,6 @@ module powerbi.extensibility.visual {
         }
 
         public update(options: VisualUpdateOptions): void {
-
             if (!options ||
                 !options.type ||
                 !options.viewport ||
@@ -61,12 +60,10 @@ module powerbi.extensibility.visual {
             }
             const dataView: DataView = options.dataViews[0];
             this.settings = Visual.parseSettings(dataView);
-
             let payloadBase64: string = null;
             if (dataView.scriptResult && dataView.scriptResult.payloadBase64) {
                 payloadBase64 = dataView.scriptResult.payloadBase64;
             }
-
             if (renderVisualUpdateType.indexOf(options.type) === -1) {
                 if (payloadBase64) {
                     this.injectCodeFromPayload(payloadBase64);
@@ -75,22 +72,17 @@ module powerbi.extensibility.visual {
                 this.onResizing(options.viewport);
             }
         }
-
         public onResizing(finalViewport: IViewport): void {
             /* add code to handle resizing of the view port */
         }
-
         private injectCodeFromPayload(payloadBase64: string): void {
             // inject HTML from payload, created in R
             // the code is injected to the 'head' and 'body' sections.
             // if the visual was already rendered, the previous DOM elements are cleared
-
             ResetInjector();
-
             if (!payloadBase64) {
                 return;
             }
-
             // create 'virtual' HTML, so parsing is easier
             let el: HTMLHtmlElement = document.createElement("html");
             try {
@@ -98,7 +90,6 @@ module powerbi.extensibility.visual {
             } catch (err) {
                 return;
             }
-
             // if 'updateHTMLHead == false', then the code updates the header data only on the 1st rendering
             // this option allows loading and parsing of large and recurring scripts only once.
             if (updateHTMLHead || this.headNodes.length === 0) {
@@ -112,7 +103,6 @@ module powerbi.extensibility.visual {
                     this.headNodes = ParseElement(head, document.head);
                 }
             }
-
             // update 'body' nodes, under the rootElement
             while (this.bodyNodes.length > 0) {
                 let tempNode: Node = this.bodyNodes.pop();
@@ -123,14 +113,11 @@ module powerbi.extensibility.visual {
                 let body: HTMLBodyElement = bodyList[0];
                 this.bodyNodes = ParseElement(body, this.rootElement);
             }
-
             RunHTMLWidgetRenderer();
         }
-
         private static parseSettings(dataView: DataView): VisualSettings {
             return VisualSettings.parse(dataView) as VisualSettings;
         }
-
         /** 
          * This function gets called for each of the objects defined in the capabilities files and allows you to select which of the 
          * objects and properties you want to expose to the users in the property pane.

@@ -23,59 +23,49 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
 module powerbi.extensibility.visual {
-    "use strict";
-
-    import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
-
-    export function inMinMax(a: number, mi: number, ma: number) {
-      if (a < mi)
-          return mi;
-      if (a > ma)
-          return ma;
-      return a;
+  "use strict";
+  import DataViewObjectsParser = powerbi.extensibility.utils.dataview.DataViewObjectsParser;
+  export function inMinMax(a: number, mi: number, ma: number) {
+    if (a < mi)
+      return mi;
+    if (a > ma)
+      return ma;
+    return a;
   }
-
-   export class VisualSettings extends DataViewObjectsParser {
+  export class VisualSettings extends DataViewObjectsParser {
     public settings_forecastPlot_params: settings_forecastPlot_params = new settings_forecastPlot_params();
     public settings_conf_params: settings_conf_params = new settings_conf_params();
     public settings_graph_params: settings_graph_params = new settings_graph_params();
     public settings_additional_params: settings_additional_params = new settings_additional_params();
     public settings_export_params: settings_export_params = new settings_export_params();
-      }
-
-      export class settings_forecastPlot_params {
-        public forecastLength: number = 10;
-        public seasonType:string = "Automatic";
-        public errorType: string =  "Automatic";
-        public trendType: string = "Automatic";
-        public dampingType: string = "Automatic";
-        public targetSeason: string = "Automatic";
-    
-      }
-      export class settings_conf_params {
-        public show: boolean = true;
-        public confInterval1:string = "0.8";
-        public confInterval2:string = "0.95";
-      }
-      export class settings_graph_params {
-        public dataCol: string =  "orange";
-        public  forecastCol: string =  "red";
-        public  percentile: number =  40;
-        public  weight: number =  10;
-      }
-     
-      export class settings_additional_params {
-        public showInfo: boolean = true;
-        public textSize: number = 10;
-      }
-      export class settings_export_params {
-        public show: boolean = false;
-        public limitExportSize: string = "10000";
-        public method: string = "copy";
-      }
-    
-  
-
+  }
+  export class settings_forecastPlot_params {
+    public forecastLength: number = 10;
+    public seasonType: string = "Automatic";
+    public errorType: string = "Automatic";
+    public trendType: string = "Automatic";
+    public dampingType: string = "Automatic";
+    public targetSeason: string = "Automatic";
+  }
+  export class settings_conf_params {
+    public show: boolean = true;
+    public confInterval1: string = "0.8";
+    public confInterval2: string = "0.95";
+  }
+  export class settings_graph_params {
+    public dataCol: string = "orange";
+    public forecastCol: string = "red";
+    public percentile: number = 40;
+    public weight: number = 10;
+  }
+  export class settings_additional_params {
+    public showInfo: boolean = true;
+    public textSize: number = 10;
+  }
+  export class settings_export_params {
+    public show: boolean = false;
+    public limitExportSize: string = "10000";
+    public method: string = "copy";
+  }
 }
